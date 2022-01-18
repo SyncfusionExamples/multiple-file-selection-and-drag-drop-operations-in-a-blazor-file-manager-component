@@ -1,0 +1,43 @@
+﻿@page "/"
+@using Syncfusion.Blazor.FileManager
+
+
+<SfFileManager TValue="FileManagerDirectoryContent" View="ViewType.Details" AllowMultiSelection="false"
+               AllowDragAndDrop="true">
+    <FileManagerAjaxSettings Url="/api/FileManager/FileOperations"
+                             DownloadUrl="/api/FileManager/Download"
+                             UploadUrl="/api/FileManager/Upload"
+                             GetImageUrl="/api/FileManager/GetImage">
+    </FileManagerAjaxSettings>
+    <FileManagerEvents TValue="FileManagerDirectoryContent"
+                       OnFileDragStart="DragStart"
+                       OnFileDragStop="DragStop"
+                       FileDropped="Dropped"
+                       FileDragging="Dragging"></FileManagerEvents>
+</SfFileManager>
+
+@code{
+
+    public void DragStart(FileDragEventArgs<FileManagerDirectoryContent> args)
+    {
+        if (args.FileDetails.First().Type == ".docx")
+        {
+            args.Cancel = true;
+        }
+    }
+
+    public void DragStop(FileDragEventArgs<FileManagerDirectoryContent> args)
+    {
+        Console.WriteLine("DragStop: " + args.FileDetails.FirstOrDefault().Name);
+    }
+
+    public void Dropped(FileDragEventArgs<FileManagerDirectoryContent> args)
+    {
+        Console.WriteLine("Dropped: " + args.FileDetails.FirstOrDefault().Name);
+    }
+
+    public void Dragging(FileDragEventArgs<FileManagerDirectoryContent> args)
+    {
+        Console.WriteLine("Dragging: " + args.FileDetails.FirstOrDefault().Name);
+    }
+}
