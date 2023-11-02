@@ -12,11 +12,10 @@
     <FileManagerEvents TValue="FileManagerDirectoryContent"
                        OnFileDragStart="DragStart"
                        OnFileDragStop="DragStop"
-                       FileDropped="Dropped"
-                       FileDragging="Dragging"></FileManagerEvents>
+                       FileDropped="Dropped"></FileManagerEvents>
 </SfFileManager>
 
-@code{
+@code {
 
     public void DragStart(FileDragEventArgs<FileManagerDirectoryContent> args)
     {
@@ -34,10 +33,5 @@
     public void Dropped(FileDragEventArgs<FileManagerDirectoryContent> args)
     {
         Console.WriteLine("Dropped: " + args.FileDetails.FirstOrDefault().Name);
-    }
-
-    public void Dragging(FileDragEventArgs<FileManagerDirectoryContent> args)
-    {
-        Console.WriteLine("Dragging: " + args.FileDetails.FirstOrDefault().Name);
     }
 }
