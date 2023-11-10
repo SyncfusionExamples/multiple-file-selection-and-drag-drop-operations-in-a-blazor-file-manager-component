@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Syncfusion.EJ2.FileManager.Base;
 using Syncfusion.EJ2.FileManager.PhysicalFileProvider;
 
-namespace MyBlazorApp.Server.Controllers
+namespace DragAndDrop.Server.Controllers
 {
     [Route("api/[controller]")]
     public class FileManagerController : Controller

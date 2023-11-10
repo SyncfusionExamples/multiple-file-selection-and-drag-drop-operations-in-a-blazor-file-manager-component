@@ -1,6 +1,8 @@
 ﻿@page "/fetchdata"
-@using MyBlazorApp.Shared
+@using DragAndDrop.Shared
 @inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
 
 <h1>Weather forecast</h1>
 
@@ -36,11 +38,10 @@ else
 }
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
-
 }
